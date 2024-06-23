@@ -96,7 +96,7 @@ class UIWidgets:
         self.num_eqs_dialog = ft.AlertDialog(
             modal=True,
             title=ft.Text("Parler pour le nombre d'équations"),
-            content=ft.Text("En cours de développement..."),#ft.TextField(hint_text="Dites le nombre d'équations"),
+            content=ft.Text("En cours de développement... Trouver le code dans test/test.py"),#ft.TextField(hint_text="Dites le nombre d'équations"),
             actions=[
                 #ft.TextButton("Confirmer", on_click=self.confirm_num_eqs),
                 ft.TextButton("Fermer", on_click=lambda e: self.close_modal_dialog(self.num_eqs_dialog))
@@ -110,7 +110,7 @@ class UIWidgets:
         self.num_vars_dialog = ft.AlertDialog(
             modal=True,
             title=ft.Text("Parler pour le nombre de composants de X0"),
-            content= ft.Text("En cours de développement..."), #ft.TextField(hint_text="Dites le nombre de composants de X0"),
+            content= ft.Text("En cours de développement... Trouver le code dans test/test.py"), #ft.TextField(hint_text="Dites le nombre de composants de X0"),
             actions=[
                 #ft.TextButton("Confirmer", on_click=self.confirm_num_vars),
                 ft.TextButton("Fermer", on_click=lambda e: self.close_modal_dialog(self.num_vars_dialog))
@@ -124,7 +124,7 @@ class UIWidgets:
         modal_dialog = ft.AlertDialog(
             modal=True,
             title=ft.Text(f"Parler pour x0[{i}]"),
-            content=ft.Text("En cours de développement..."),
+            content=ft.Text("En cours de développement... Trouver le code dans test/test.py"),
             actions=[ft.TextButton("Fermer", on_click=lambda e: self.close_modal_dialog(modal_dialog))]
         )
         self.page.dialog = modal_dialog

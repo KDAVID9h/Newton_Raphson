@@ -1,5 +1,20 @@
 # A newton Flet app
 
+![alt text](image.png)
+
+# Usage
+Run the app and follow instructions
+## Run
+#### To run the app:
+```
+flet run --web main.py
+```
+
+## Build
+	flet build \ [apk, ios, web,...]
+
+# Structure
+
 Project/
 │
 ├── main.py
@@ -21,8 +36,6 @@ Project/
 |   ├── test.py
 
 
-To run the app:
+# Author
 
-```
-flet run [app_directory]
-```
+### HOGNON Kossi David

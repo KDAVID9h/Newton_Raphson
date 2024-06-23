@@ -9,6 +9,15 @@ async def main(page: ft.Page):
     page.title = "Résolution des Systèmes d'Équations Non Linéaires"
     page.scroll = 'HIDDEN'
     page.theme_mode = ft.ThemeMode.SYSTEM
+
+    # Construisez l'écran principal
+    await create_layout(page)
+    
+    # Mettez à jour la page pour afficher l'écran principal
+    page.update()
+
+ft.app(target=main, assets_dir="assets")
+
     #page.bgcolor = "background-color: #RRGGBB;"
     
     # Créez un objet VideoMedia pour votre vidéo
@@ -31,11 +40,3 @@ async def main(page: ft.Page):
     
     # Retirez l'écran de démarrage
     #page.remove(splash_video)
-    
-    # Construisez l'écran principal
-    await create_layout(page)
-    
-    # Mettez à jour la page pour afficher l'écran principal
-    page.update()
-
-ft.app(target=main, assets_dir="assets")

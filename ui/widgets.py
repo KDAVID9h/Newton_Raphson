@@ -136,7 +136,7 @@ class UIWidgets:
         self.page.update()
 
     def on_calculate_click(self, e):
-    # Vérification des entrées et conversion initiale
+        # Vérification des entrées et conversion initiale
         if self.num_eqs_input.value.strip() == "":
             self.solution_output.color = ft.colors.RED
             self.solution_output.value = "Veuillez entrer le nombre d'équations."
@@ -164,7 +164,30 @@ class UIWidgets:
         try:
             num_eqs = int(self.num_eqs_input.value)
             num_vars = int(self.num_vars_input.value)
-            tolerance = float(self.tolerance_input.value)
+        except ValueError as ex:
+            self.solution_output.value = str(ex)
+            self.page.auto_scroll = True
+            self.page.update()
+            return
+
+        # Définir les symboles pour les variables
+        symbols_list = symbols(f"x0:{num_vars}")
+
+        # Créer un dictionnaire local contenant les symboles et les fonctions mathématiques
+        math_map = {
+            'sqrt': sqrt,
+            'ln': log,
+            'log': log,
+            'sin': sin,
+            'cos': cos,
+            'exp': exp
+        }
+
+        local_dict = {str(symbol): symbol for symbol in symbols_list}
+        local_dict.update(math_map)
+
+        try:
+            tolerance = float(sympify(self.tolerance_input.value, locals=local_dict))
         except ValueError as ex:
             self.solution_output.value = str(ex)
             self.page.auto_scroll = True
@@ -176,7 +199,7 @@ class UIWidgets:
         initial_guess = [guess_control.controls[0].value for guess_control in self.initial_guess_container.controls if guess_control.controls[0].value.strip() != ""]
 
         try:
-            initial_guess = [float(value) for value in initial_guess]
+            initial_guess = [float(sympify(value, locals=local_dict)) for value in initial_guess]
         except ValueError as ex:
             self.solution_output.color = ft.colors.RED
             self.solution_output.value = f"Erreur de conversion des valeurs initiales en flottants : {str(ex)}"
@@ -192,21 +215,6 @@ class UIWidgets:
             self.page.scroll_to(offset=-1, duration=100)
             self.page.update()
             return
-
-        # Définir les symboles pour les variables
-        symbols_list = symbols(f"x0:{num_vars}")
-        # Créer un dictionnaire local contenant les symboles et les fonctions mathématiques
-        math_map = {
-    'sqrt': sqrt,
-    'ln': log,
-    'log': log,
-    'sin': sin,
-    'cos': cos,
-    'exp': exp
-    }
-
-        local_dict = {str(symbol): symbol for symbol in symbols_list}
-        local_dict.update(math_map)
 
         # Transformation des équations en expressions sympy
         try:
@@ -307,7 +315,7 @@ def init_ui(page: ft.Page):
                 weight=ft.FontWeight.BOLD,
                 foreground=ft.Paint(
                     gradient=ft.PaintLinearGradient(
-                        (0, 5), (20, 10), [ft.colors.ORANGE, ft.colors.BLUE_200]
+                        (0, 0), (50, 0), [ft.colors.ORANGE, ft.colors.BLUE_200]
                     )
                 ),
             ),

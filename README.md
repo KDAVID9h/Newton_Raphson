@@ -3,7 +3,8 @@
 ![alt text](image.png)
 
 # Usage
-Run the app and follow instructions
+- Install requirements
+- Run the app and follow instructions
 ## Run
 #### To run the app:
 ```
